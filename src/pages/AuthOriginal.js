@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { useNavigate, Link } from "react-router-dom";
-import styles from "./Auth.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
-  const [showLogIn, setShowLogIn] = useState(false);
-  const [randomImage, setRandomImage] = useState("");
-
   return (
-    <div className="auth-page styles container">
-      {showLogIn ? <Login /> : <Register />}
-
-      <Link onClick={() => setShowLogIn(!showLogIn)}>
-        <p></p>
-        {showLogIn ? (
-          <p>Don't have an account? Register</p>
-        ) : (
-          <p>Have an account? Log in</p>
-        )}
-      </Link>
+    <div className="auth-page">
+      <Login />
+      <Register />
     </div>
   );
 }
@@ -58,15 +46,18 @@ const Login = () => {
   };
 
   return (
-    <Form
-      username={username}
-      setUsername={setUsername}
-      password={password}
-      setPassword={setPassword}
-      label="Log In"
-      onSubmit={onSubmit}
-      message="See latest updates of your favorite snow sports destinations"
-    />
+    <div className="log-in-page">
+      <div className="log-in-form">
+        <Form
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+          label="Log In"
+          onSubmit={onSubmit}
+        />
+      </div>
+    </div>
   );
 };
 // REGISTER COMPONENT
@@ -98,8 +89,7 @@ const Register = () => {
       setUsername={setUsername}
       password={password}
       setPassword={setPassword}
-      label="Sign up"
-      message="Create an account to keep track of your favorite snow sports destinations"
+      label="Register"
     />
   );
 };
@@ -114,62 +104,30 @@ const Form = ({
   password,
   setPassword,
   label,
-  message,
   onSubmit,
 }) => {
-  let picArray = [
-    "01.jpeg",
-    "02.jpeg",
-    "03.jpeg",
-    "04.jpeg",
-    "05.png",
-    "06.jpeg",
-    "07.jpeg",
-  ];
-
-  const random = () => {
-    return picArray[Math.floor(Math.random() * picArray.length)];
-  };
-
   return (
-    <main class="container">
-      <article class="grid">
-        <div>
-          <hgroup>
-            <h1>{label}</h1>
-            <p>{message}</p>
-          </hgroup>
-          <form onSubmit={onSubmit}>
-            <input
-              type="text"
-              name="login"
-              placeholder="Login"
-              aria-label="Login"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              aria-label="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-
-            <button type="submit" class="contrast">
-              {label}
-            </button>
-          </form>
+    <div className="auth-container container">
+      <form onSubmit={onSubmit}>
+        <h2>{label}</h2>
+        <div className="form-group">
+          <label htmlFor="username">username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label htmlFor="password">password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-        <div
-          style={{
-            backgroundImage: `url(https://github.com/m-soro/Project_2/blob/main/src/assets/images/05.png?raw=true)`,
-          }}
-        ></div>
-      </article>
-    </main>
+        <button type="submit">{label}</button>
+      </form>
+    </div>
   );
 };

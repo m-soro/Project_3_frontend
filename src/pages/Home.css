@@ -1,0 +1,17 @@
+.mountain-list-article-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-options {
+  display: flex;
+  gap: 1rem;
+}
+
+.mountain-list-article-body small {
+  padding-left: 0.6rem;
+}
+
+.mountain-list-article-header {
+}

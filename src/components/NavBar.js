@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import styles from "./NavBar.css";
 
 export default function NavBar({ userID }) {
   const [cookies, setCookies] = useCookies(["access_token"]);
@@ -17,20 +18,31 @@ export default function NavBar({ userID }) {
 
   const userLoggedIn = () => {
     return (
-      <div className="navbar">
-        <Link to="/">Home</Link>
-
+      <nav className="navbar">
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+        </ul>
         {!cookies.access_token ? (
           <>
-            <Link to="/auth">Log in or Register</Link>
+            <ul>
+              <li>
+                <Link to="/auth">Sign up / Log in</Link>
+              </li>
+            </ul>
           </>
         ) : (
-          <>
-            <Link to="/create-data">Add Resort</Link>
-            <button onClick={logout}>Log out</button>
-          </>
+          <ul>
+            <li>
+              <Link to="/create-data">Create Lists</Link>
+            </li>
+            <li>
+              <Link onClick={logout}>Log out</Link>
+            </li>
+          </ul>
         )}
-      </div>
+      </nav>
     );
   };
 

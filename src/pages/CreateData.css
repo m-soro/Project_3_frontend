@@ -1,0 +1,47 @@
+.create-data-container {
+  /* border: 1px solid green; */
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.create-data {
+  /* border: 10px solid black; */
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5em;
+  flex-wrap: wrap;
+}
+
+.submit-button {
+  width: auto !important;
+}
+
+.selections-list,
+.input-label {
+  font-size: smaller;
+  font-weight: 200;
+}
+
+[type="checkbox"] {
+  font-size: xx-small !important;
+}
+
+.selected-list,
+li {
+  list-style-type: none !important;
+}
+
+.selected-list,
+ul {
+  /* padding: 0 !important; */
+}
+
+.select-save {
+  display: flex;
+  gap: 1em;
+}
+
+.submit-button {
+  width: max-content !important;
+}

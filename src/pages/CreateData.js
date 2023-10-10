@@ -13,6 +13,8 @@ import { useGetUserID } from "../hooks/useGetUserID.js";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { useCookies } from "react-cookie";
+import Typography from "@mui/material/Typography";
+import styles from "./CreateData.css";
 
 const ITEM_HEIGHT = 100;
 const ITEM_PADDING_TOP = 10;
@@ -95,47 +97,72 @@ export default function CreateData() {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <TextField
-          id="outlined-basic"
-          label="List Name"
-          variant="outlined"
-          onChange={handleNameChange}
-          name="listName"
-        />
-        <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo-multiple-checkbox-label">
-            Resort Names
-          </InputLabel>
-          <Select
-            labelId="demo-multiple-checkbox-label"
-            id="demo-multiple-checkbox"
-            multiple
-            value={resortName}
-            onChange={handleChange}
-            input={<OutlinedInput label="Resort Names" />}
-            renderValue={(selected) => selected.join(", ")}
-            MenuProps={MenuProps}
-          >
-            {names.map((name) => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={resortName.indexOf(name) > -1} />
-                <ListItemText primary={name} />
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <Button variant="outlined" type="submit">
-          Save List
-        </Button>
-      </form>
-      <div>You selected:</div>
-      {resortName.map((mt, index) => (
-        <ul key={index}>
-          <li>{mt}</li>
-        </ul>
-      ))}
+    <div className="container styles create-data-container">
+      <div className="create-data">
+        <form onSubmit={onSubmit} className="create-form">
+          <h1>Create a list of resorts to track</h1>
+          <input
+            id="outlined-basic"
+            label="List Name"
+            variant="outlined"
+            onChange={handleNameChange}
+            name="listName"
+            placeholder="Name of your list"
+            required
+          />
+          <small>Create a unique list name</small>
+
+          <div className="select-save">
+            <FormControl
+              sx={{ m: 1, width: 320 }}
+              className="checklist-menu"
+              size="small"
+            >
+              <InputLabel
+                id="demo-multiple-checkbox-label"
+                disableTypography
+                className="input-label"
+              >
+                Resort Names
+              </InputLabel>
+              <Select
+                labelId="demo-multiple-checkbox-label"
+                id="demo-multiple-checkbox"
+                multiple
+                value={resortName}
+                onChange={handleChange}
+                input={<OutlinedInput label="Resort Names" />}
+                renderValue={(selected) => selected.join(", ")}
+                MenuProps={MenuProps}
+              >
+                {names.map((name) => (
+                  <MenuItem key={name} value={name}>
+                    <Checkbox checked={resortName.indexOf(name) > -1} />
+                    <ListItemText
+                      disableTypography
+                      primary={name}
+                      className="selections-list"
+                    />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Button variant="outlined" type="submit" className="submit-button">
+              Save List
+            </Button>
+          </div>
+        </form>
+        <div className="selected-list">
+          <h1></h1>
+          <h3>You selected:</h3>
+          {resortName.map((mt, index) => (
+            <ul key={index}>
+              <li>{mt}</li>
+            </ul>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

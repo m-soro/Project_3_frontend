@@ -1,0 +1,33 @@
+.dashboard {
+  border: 2px solid red;
+  padding: 0.5rem;
+}
+
+.mountain-card-article {
+  border: 2px solid blue;
+  display: flex;
+  padding-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.mountain-card-article-header > img {
+  height: auto;
+  width: 350px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.mountain-card-article-header {
+  padding: 0 0.5rem;
+  margin: 0;
+}
+
+.mountain-card-article-header > h3 {
+  margin-bottom: 1.5rem;
+}
+
+.chair-stats-box {
+}
