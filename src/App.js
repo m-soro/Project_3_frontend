@@ -5,20 +5,29 @@ import Auth from "./pages/Auth";
 import CreateData from "./pages/CreateData";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
-import { useGetUserID } from "./hooks/useGetUserID";
+import Edit from "./pages/Edit";
+import { useGetUserName } from "./hooks/useGetUserName";
 import MyListContext from "./contexts/MyListContext";
 
 function App() {
-  const userID = useGetUserID();
+  const userName = useGetUserName();
+  console.log(userName);
 
   return (
     <div className="App">
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create-data" element={<CreateData />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Home userName={userName} />} />
+          <Route
+            path="/create-data"
+            element={<CreateData userName={userName} />}
+          />
+          <Route
+            path="/dashboard"
+            element={<Dashboard userName={userName} />}
+          />
+          <Route path="/update/:id" element={<Edit />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>
       </Router>

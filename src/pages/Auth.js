@@ -6,7 +6,6 @@ import styles from "./Auth.css";
 
 export default function Auth() {
   const [showLogIn, setShowLogIn] = useState(false);
-  const [randomImage, setRandomImage] = useState("");
 
   return (
     <div className="auth-page styles container">
@@ -49,6 +48,7 @@ const Login = () => {
         // set the response to cookie
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
+        window.localStorage.setItem("userName", username);
         // after successful login - redirect to homepage using useNavigate hook
         navigate("/");
       }
@@ -117,6 +117,8 @@ const Form = ({
   message,
   onSubmit,
 }) => {
+  const [randomImage, setRandomImage] = useState("");
+
   let picArray = [
     "01.jpeg",
     "02.jpeg",
@@ -131,9 +133,13 @@ const Form = ({
     return picArray[Math.floor(Math.random() * picArray.length)];
   };
 
+  useEffect(() => {
+    setRandomImage(random());
+  }, []);
+
   return (
-    <main class="container">
-      <article class="grid">
+    <main className="container">
+      <article className="grid">
         <div>
           <hgroup>
             <h1>{label}</h1>
@@ -159,14 +165,14 @@ const Form = ({
               required
             />
 
-            <button type="submit" class="contrast">
+            <button type="submit" className="secondary">
               {label}
             </button>
           </form>
         </div>
         <div
           style={{
-            backgroundImage: `url(https://github.com/m-soro/Project_2/blob/main/src/assets/images/05.png?raw=true)`,
+            backgroundImage: `url(https://github.com/m-soro/Project_2/blob/main/src/assets/images/${randomImage}?raw=true)`,
           }}
         ></div>
       </article>

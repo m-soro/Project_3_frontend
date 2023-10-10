@@ -29,5 +29,11 @@
   margin-bottom: 1.5rem;
 }
 
-.chair-stats-box {
+.cards-container {
+  border: 2px solid grey;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }

@@ -1,0 +1,15 @@
+.edit-form {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
+}
+
+.edit-submit-button {
+  height: fit-content;
+  width: fit-content;
+}
+
+.included-resorts {
+  display: flex;
+  flex-direction: column;
+}

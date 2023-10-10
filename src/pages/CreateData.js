@@ -134,6 +134,7 @@ export default function CreateData() {
                 input={<OutlinedInput label="Resort Names" />}
                 renderValue={(selected) => selected.join(", ")}
                 MenuProps={MenuProps}
+                required
               >
                 {names.map((name) => (
                   <MenuItem key={name} value={name}>

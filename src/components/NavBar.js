@@ -13,6 +13,7 @@ export default function NavBar({ userID }) {
   const logout = () => {
     setCookies("access_token", "");
     window.localStorage.removeItem("userID");
+    window.localStorage.removeItem("userName");
     navigate("/auth");
   };
 
