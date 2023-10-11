@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function NotLoggedIn() {
   return (
-    <main className="container styles not-logged-in">
+    <main className="container-fluid styles not-logged-in">
       <article className="not-logged-in-container grid">
         <div className="text">
           <h3>You are not logged in.</h3>

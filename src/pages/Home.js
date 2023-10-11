@@ -86,10 +86,14 @@ export default function Home({ userName }) {
                     </ImageList>
                   </header>
                   <body className="mountain-list-article-body">
-                    <small>
-                      Resorts in this list: {mountainList.mountains.length}
-                    </small>
-
+                    <ul className="resort-list-footer">
+                      <li>
+                        Tracking: {mountainList.mountains.length} resorts:{" "}
+                      </li>
+                      {detailedList[index].map((item) => {
+                        return <li>{item.name}</li>;
+                      })}
+                    </ul>
                     <div className="list-options">
                       <Link
                         to={`/update/${mountainList._id}`}

@@ -7,12 +7,9 @@ import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
 import Edit from "./pages/Edit";
 import { useGetUserName } from "./hooks/useGetUserName";
-import MyListContext from "./contexts/MyListContext";
 
 function App() {
   const userName = useGetUserName();
-  console.log(userName);
-
   return (
     <div className="App">
       <Router>

@@ -6,7 +6,6 @@ import styles from "./NavBar.css";
 
 export default function NavBar({ userID }) {
   const [cookies, setCookies] = useCookies(["access_token"]);
-
   const navigate = useNavigate();
 
   // reset the cookie
@@ -39,7 +38,9 @@ export default function NavBar({ userID }) {
               <Link to="/create-data">Create Lists</Link>
             </li>
             <li>
-              <Link onClick={logout}>Log out</Link>
+              <Link to="/auth" onClick={logout}>
+                Log out
+              </Link>
             </li>
           </ul>
         )}

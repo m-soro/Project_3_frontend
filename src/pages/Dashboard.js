@@ -1,9 +1,8 @@
 import axios from "axios";
 import { resorts } from "../ulitities/data";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Dashboard.css";
-import { useState } from "react";
 
 export default function Dashboard() {
   const { state } = useLocation();
@@ -21,7 +20,7 @@ export default function Dashboard() {
       method: "GET",
       url: `https://ski-resorts-and-conditions.p.rapidapi.com/v1/resort/${slug}`,
       headers: {
-        "X-RapidAPI-Key": "dfd428dbdcmshe06643051b38c0bp1a4bd8jsn59da54a4c468",
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
         "X-RapidAPI-Host": "ski-resorts-and-conditions.p.rapidapi.com",
       },
     };
@@ -42,6 +41,7 @@ export default function Dashboard() {
     });
   }, []);
 
+  const myArr = ["a", "b", "c"];
   const makeCards = (list) => {
     const filtered = mountainData.filter((md) =>
       list.slug.includes(md?.data?.slug)
@@ -49,42 +49,178 @@ export default function Dashboard() {
 
     if (filtered) {
       try {
-        const selected = filtered.slice(0, 1);
+        const selected = filtered;
         const { data } = selected[0];
-        const { lifts } = data;
-        const { status: chairStatus } = lifts; // key value pairs of chair names and status
-        const { stats: openClosedSched } = lifts; // how many chairs are open/closed/onhold
-        const { percentage } = openClosedSched; // ratio of chairs open/closed/scheduled
-        const { href } = data; // hyperlink of the mountain
-        const { location } = data; // longitude and latitude of the mountain
 
-        delete openClosedSched.percentage;
+        // const { lifts } = data;
+        // const { status: chairStatus } = lifts; // key value pairs of chair names and status
+        // const { stats: openClosedSched } = lifts; // how many chairs are open/closed/onhold ----------- YES
+        // const { percentage } = openClosedSched; // ratio of chairs open/closed/scheduled ----------- YES
+        // const { href } = data; // hyperlink of the mountain
+        // const { location } = data; // longitude and latitude of the mountain
+        // console.log("the location", location);
+        // delete openClosedSched.percentage;
+
+        const showPercentage = () => {
+          try {
+            if (data) {
+              const { lifts } = data;
+              const { stats: openClosedSched } = lifts; // how many chairs are open/closed/onhold
+              const { percentage } = openClosedSched; // ratio of chairs open/closed/scheduled
+              return Object.keys(percentage).map((key, index) => (
+                <li>
+                  {key}: {percentage[key]}
+                </li>
+              ));
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        const showOpenClosedSched = () => {
+          try {
+            if (data) {
+              const { lifts } = data;
+              const { stats: openClosedSched } = lifts; // how many chairs are open/closed/onhold
+              return Object.keys(openClosedSched).map((key, index) => {
+                if (key !== "percentage") {
+                  return (
+                    <li>
+                      {key}: {openClosedSched[key]}
+                    </li>
+                  );
+                }
+              });
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        const showChairStatus = () => {
+          try {
+            if (data) {
+              const { lifts } = data;
+              const { status: chairStatus } = lifts; // key value pairs of chair names and status
+
+              return (
+                <details>
+                  <summary>
+                    {Object.keys(chairStatus).length !== 0
+                      ? "Chair Status"
+                      : "No chair status available"}
+                  </summary>
+                  <p></p>
+                  <table>
+                    <thead></thead>
+                    <tbody>
+                      {Object.keys(chairStatus).map((key, index) => (
+                        <tr scope="row" key={index}>
+                          <td>{key}</td>
+                          {chairStatus[key] === "closed" ? (
+                            <td style={{ color: "#fd5959" }}>
+                              {chairStatus[key]}
+                            </td>
+                          ) : chairStatus[key] === "scheduled" ? (
+                            <td style={{ color: "#ff894c" }}>
+                              {chairStatus[key]}
+                            </td>
+                          ) : chairStatus[key] === "open" ? (
+                            <td style={{ color: "#00204a" }}>
+                              {chairStatus[key]}
+                            </td>
+                          ) : (
+                            <td>{chairStatus[key]}</td>
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </details>
+              );
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        const showLocation = () => {
+          const map =
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10245.793161796904!2d-122.96724402382902!3d50.05916564431904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5487225af28c5409%3A0x276c0edfa7be2148!2sWhistler%20Mountain!5e0!3m2!1sen!2sus!4v1697039798245!5m2!1sen!2sus";
+          return (
+            <details>
+              <summary>Map</summary>
+              <iframe
+                src={`${map}`}
+                width="auto"
+                height="380"
+                allowfullscreen="true"
+                loading="lazy"
+                title="map"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </details>
+          );
+        };
+
+        return (
+          <div className="mountain-card-container">
+            <article className="mountain-card-article container">
+              <header className="mountain-card-article-header">
+                <h4>{list.name}</h4>
+                <span>
+                  {mountainData !== null &&
+                  mountainData !== undefined &&
+                  filtered !== undefined ? (
+                    <ul className="percentage">{showPercentage()}</ul>
+                  ) : (
+                    <div></div>
+                  )}
+                </span>
+                <div class="container">
+                  <img src={`${list.img}`} alt={`${list.name}`} />
+                </div>
+              </header>
+              <article className="chair-stats-box">
+                <header>
+                  <h5>{list.label}</h5>
+                </header>
+                <body className="mountain-card-article-body">
+                  {mountainData !== null &&
+                  mountainData !== undefined &&
+                  filtered !== undefined ? (
+                    <ul className="mountain-card-article-body-open-closed-sched">
+                      {showOpenClosedSched()}
+                    </ul>
+                  ) : (
+                    <div></div>
+                  )}
+
+                  <div className="chair-and-map">
+                    {showChairStatus()}
+
+                    {showLocation()}
+                  </div>
+                </body>
+              </article>
+            </article>
+          </div>
+        );
       } catch (error) {
         console.error(error);
       }
     } else {
-      console.log("There is something wrong.");
+      console.log("Error encountered");
     }
-
-    return (
-      <div className="mountain-card-container">
-        <article className="mountain-card-article">
-          <header className="mountain-card-article-header">
-            <h4>{list.name}</h4>
-            <img src={`${list.img}`} alt={`${list.slug}`} />
-          </header>
-          <article className="chair-stats-box">
-            <ul></ul>
-          </article>
-        </article>
-      </div>
-    );
   };
 
   return (
     <div className="styles dashboard container-fluid">
-      <h1>Your Saved List</h1>
-      <h2>{myListName?.toUpperCase()}</h2>
+      <div className="dashboard-heading">
+        <h1>Your Saved List</h1>
+        <h2>{myListName?.toUpperCase()}</h2>
+      </div>
       <div className="cards-container">
         {moreDetailedList?.map((list, index) => {
           return <div key={index}>{makeCards(list, index)}</div>;
