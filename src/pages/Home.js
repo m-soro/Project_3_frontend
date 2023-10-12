@@ -98,15 +98,19 @@ export default function Home({ userName }) {
                       })}
                     </ul>
                     <div className="list-options">
-                      <Link
-                        to={`/update/${mountainList._id}`}
-                        state={{ mountainList }}
-                      >
-                        Edit
-                      </Link>
-                      <Link onClick={() => handleDelete(mountainList._id)}>
-                        Delete
-                      </Link>
+                      <button className="outline">
+                        <Link
+                          to={`/update/${mountainList._id}`}
+                          state={{ mountainList }}
+                        >
+                          Edit
+                        </Link>
+                      </button>
+                      <button className="outline">
+                        <Link onClick={() => handleDelete(mountainList._id)}>
+                          Delete
+                        </Link>
+                      </button>
                     </div>
                   </body>
                 </article>

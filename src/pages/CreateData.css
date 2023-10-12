@@ -1,8 +1,7 @@
 .create-data-container {
   /* border: 1px solid green; */
-  height: 80vh;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 .create-data {

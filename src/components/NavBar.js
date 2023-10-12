@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import styles from "./NavBar.css";
 
-export default function NavBar({ userID }) {
+export default function NavBar({ userID, userName }) {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
 
@@ -34,6 +34,9 @@ export default function NavBar({ userID }) {
           </>
         ) : (
           <ul>
+            <li>
+              <Link to="/">{userName}'s Account</Link>
+            </li>
             <li>
               <Link to="/create-data">Create Lists</Link>
             </li>

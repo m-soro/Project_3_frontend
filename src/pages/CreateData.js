@@ -58,7 +58,10 @@ export default function CreateData() {
 
   const handleNameChange = (event) => {
     const { name, value } = event.target;
-    setMountain({ ...mountain, [name]: value });
+    setMountain({
+      ...mountain,
+      [name]: value.charAt(0).toUpperCase() + value.slice(1),
+    });
   };
 
   useEffect(() => {

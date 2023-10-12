@@ -100,6 +100,7 @@ export default function Dashboard() {
                       ? "Chair Status"
                       : "No chair status available"}
                   </summary>
+
                   <p></p>
                   <table>
                     <thead></thead>

@@ -157,7 +157,7 @@ const Form = ({
               name="login"
               placeholder="Login"
               aria-label="Login"
-              value={username}
+              value={username.charAt(0).toUpperCase() + username.slice(1)}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
@@ -170,7 +170,6 @@ const Form = ({
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-
             <button type="submit" className="secondary">
               {label}
             </button>
