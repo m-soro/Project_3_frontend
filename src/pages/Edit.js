@@ -38,7 +38,7 @@ export default function Edit() {
     event.preventDefault();
     try {
       await axios.put(
-        `https://open-peaks-v2-backend.onrender.com/${listToEdit.message?._id}`,
+        `https://open-peaks-v2-backend.onrender.com/update/${listToEdit.message?._id}`,
         {
           listName: listName,
         }
