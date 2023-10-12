@@ -40,7 +40,6 @@ export default function Dashboard() {
     });
   }, []);
 
-  const myArr = ["a", "b", "c"];
   const makeCards = (list) => {
     const filtered = mountainData.filter((md) =>
       list.slug.includes(md?.data?.slug)
@@ -50,6 +49,7 @@ export default function Dashboard() {
       try {
         const selected = filtered;
         const { data } = selected[0];
+
         const showPercentage = () => {
           try {
             if (data) {
@@ -153,6 +153,14 @@ export default function Dashboard() {
           );
         };
 
+        const showURL = () => {
+          return (
+            <a href={data.href}>
+              <small>Website</small>
+            </a>
+          );
+        };
+
         return (
           <div className="mountain-card-container">
             <article className="mountain-card-article container">
@@ -167,10 +175,10 @@ export default function Dashboard() {
                     <div></div>
                   )}
                 </span>
-                <div class="container-image">
-                  <img src={`${list.img}`} alt={`${list.name}`} />
-                </div>
               </header>
+              <div class="container-image">
+                <img src={`${list.img}`} alt={`${list.name}`} />
+              </div>
               <article className="chair-stats-box">
                 <header>
                   <h5>{list.label}</h5>
@@ -190,6 +198,7 @@ export default function Dashboard() {
                     {showChairStatus()}
 
                     {showLocation()}
+                    {showURL()}
                   </div>
                 </body>
               </article>
@@ -207,7 +216,6 @@ export default function Dashboard() {
   return (
     <div className="styles dashboard container-fluid">
       <div className="dashboard-heading">
-        <h1>Your Saved List</h1>
         <h2>{myListName?.toUpperCase()}</h2>
       </div>
       <div className="cards-container">

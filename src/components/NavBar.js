@@ -18,10 +18,10 @@ export default function NavBar({ userID }) {
 
   const userLoggedIn = () => {
     return (
-      <nav className="navbar">
+      <nav className="navbar container-fluid">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">Open Peaks</Link>
           </li>
         </ul>
         {!cookies.access_token ? (

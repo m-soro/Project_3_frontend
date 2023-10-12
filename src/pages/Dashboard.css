@@ -1,5 +1,5 @@
 .dashboard {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
 }
 
 .dashboard-heading > h1 {
@@ -21,7 +21,7 @@
 }
 
 .mountain-card-article {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   display: flex;
   padding: 1rem 0;
   gap: 0rem;
@@ -47,7 +47,7 @@
   padding: 0 0.5rem;
   margin: 0;
   background-color: transparent;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@ h5 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
   padding: 0.2em;
 }
 
@@ -92,11 +92,11 @@ h5 {
 
 .chair-stats-box {
   width: 90%;
-  border: 1px solid blueviolet;
+  /* border: 1px solid blueviolet; */
 }
 
 .cards-container {
-  border: 2px solid grey;
+  /* border: 2px solid grey; */
   padding: 0 1rem;
   display: grid;
   gap: 1rem;
@@ -111,6 +111,6 @@ h5 {
 }
 
 .chair-and-map tbody {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 100%;
 }

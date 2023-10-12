@@ -1,6 +1,6 @@
 .create-data-container {
   /* border: 1px solid green; */
-  height: 70vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,8 +8,10 @@
 .create-data {
   /* border: 10px solid black; */
   display: flex;
-  justify-content: space-between;
-  gap: 2.5em;
+  /* justify-content: space-between; */
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
   flex-wrap: wrap;
 }
 
@@ -30,11 +32,6 @@
 .selected-list,
 li {
   list-style-type: none !important;
-}
-
-.selected-list,
-ul {
-  /* padding: 0 !important; */
 }
 
 .select-save {

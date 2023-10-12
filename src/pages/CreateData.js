@@ -161,12 +161,18 @@ export default function CreateData() {
         </form>
         <div className="selected-list">
           <h1></h1>
-          <h3>You selected:</h3>
-          {resortName.map((mt, index) => (
-            <ul key={index}>
-              <li>{mt}</li>
-            </ul>
-          ))}
+          <article style={{ padding: ".7em" }}>
+            <header style={{ marginBottom: ".6em" }}>
+              <h3 style={{ marginBottom: "0" }}>You selected:</h3>
+            </header>
+            <body>
+              {resortName.map((mt, index) => (
+                <ul key={index}>
+                  <li style={{ fontSize: "smaller" }}>{mt}</li>
+                </ul>
+              ))}
+            </body>
+          </article>
         </div>
       </div>
     </div>
