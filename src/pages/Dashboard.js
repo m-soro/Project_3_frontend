@@ -26,7 +26,6 @@ export default function Dashboard() {
     };
     try {
       const response = await axios.request(options);
-      // console.log(response.data.data.location); // to get the coordinates
       return response.data;
     } catch (error) {
       console.error(error);
@@ -51,16 +50,6 @@ export default function Dashboard() {
       try {
         const selected = filtered;
         const { data } = selected[0];
-
-        // const { lifts } = data;
-        // const { status: chairStatus } = lifts; // key value pairs of chair names and status
-        // const { stats: openClosedSched } = lifts; // how many chairs are open/closed/onhold ----------- YES
-        // const { percentage } = openClosedSched; // ratio of chairs open/closed/scheduled ----------- YES
-        // const { href } = data; // hyperlink of the mountain
-        // const { location } = data; // longitude and latitude of the mountain
-        // console.log("the location", location);
-        // delete openClosedSched.percentage;
-
         const showPercentage = () => {
           try {
             if (data) {
@@ -102,7 +91,7 @@ export default function Dashboard() {
           try {
             if (data) {
               const { lifts } = data;
-              const { status: chairStatus } = lifts; // key value pairs of chair names and status
+              const { status: chairStatus } = lifts;
 
               return (
                 <details>
@@ -153,7 +142,7 @@ export default function Dashboard() {
               <summary>Map</summary>
               <iframe
                 src={`${map}`}
-                width="auto"
+                width="100%"
                 height="380"
                 allowfullscreen="true"
                 loading="lazy"
@@ -178,7 +167,7 @@ export default function Dashboard() {
                     <div></div>
                   )}
                 </span>
-                <div class="container">
+                <div class="container-image">
                   <img src={`${list.img}`} alt={`${list.name}`} />
                 </div>
               </header>

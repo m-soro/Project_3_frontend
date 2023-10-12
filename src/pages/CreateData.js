@@ -68,15 +68,21 @@ export default function CreateData() {
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:3001/mountain", mountain, {
-        headers: { authorization: cookies.access_token },
-      });
+      await axios.post(
+        "https://open-peaks-v2-backend.onrender.com/mountain",
+        mountain,
+        {
+          headers: { authorization: cookies.access_token },
+        }
+      );
       try {
-        const response = await axios.get("http://localhost:3001/mountain");
+        const response = await axios.get(
+          "https://open-peaks-v2-backend.onrender.com/mountain"
+        );
         const mountainID = response.data.pop()._id;
         try {
           const response = await axios.put(
-            "http://localhost:3001/mountain",
+            "https://open-peaks-v2-backend.onrender.com/mountain",
             {
               mountainID,
               userID,
@@ -89,7 +95,6 @@ export default function CreateData() {
       } catch (error) {
         console.log(error);
       }
-      console.log("New mountains list added");
       navigate("/");
     } catch (error) {
       console.error(error);

@@ -15,7 +15,7 @@ export default function Edit() {
   const handleEdit = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/mountain/update/${id}`
+        `https://open-peaks-v2-backend.onrender.com/mountain/update/${id}`
       );
       return response.data;
     } catch (error) {
@@ -38,7 +38,7 @@ export default function Edit() {
     event.preventDefault();
     try {
       await axios.put(
-        `http://localhost:3001/mountain/update/${listToEdit.message?._id}`,
+        `https://open-peaks-v2-backend.onrender.com/${listToEdit.message?._id}`,
         {
           listName: listName,
         }
@@ -64,34 +64,38 @@ export default function Edit() {
 
       {listToEdit !== undefined ? (
         <>
-          <form onSubmit={onSubmit} className="edit-form">
-            <div className="text-input">
-              List Name:{" "}
-              <input
-                type="text"
-                name="listName"
-                onChange={handleListNameChange}
-                defaultValue={listToEdit.message?.listName}
-                required
-              />
-              <small>*editing specific list items is not allowed*</small>
-            </div>
-            <br />
+          <article className="edit-form-article">
+            <form onSubmit={onSubmit} className="edit-form">
+              <div className="text-input">
+                List Name:{" "}
+                <input
+                  type="text"
+                  name="listName"
+                  onChange={handleListNameChange}
+                  defaultValue={listToEdit.message?.listName}
+                  required
+                />
+                <small>*editing specific list items is not allowed*</small>
+              </div>
+              <br />
 
-            <button
-              type="submit"
-              role="button"
-              className="outline edit-submit-button"
-            >
-              submit
-            </button>
-          </form>
+              <button
+                type="submit"
+                role="button"
+                className="outline edit-submit-button"
+              >
+                submit
+              </button>
+            </form>
+          </article>
 
           {myDetailedLists !== null && myDetailedLists !== undefined ? (
-            <ul className="included-resorts">
-              <p>This list includes:</p>
-              {populateList()}
-            </ul>
+            <article className="included-resorts-article">
+              <ul className="included-resorts">
+                <p>This list includes:</p>
+                {populateList()}
+              </ul>
+            </article>
           ) : (
             <div>This list is empty.</div>
           )}

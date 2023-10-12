@@ -38,10 +38,13 @@ const Login = () => {
     try {
       // make a post request, but this time we are going to use the authenticated token
       // get the received response from the api - the jwt token from the backend
-      const response = await axios.post("http://localhost:3001/auth/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://open-peaks-v2-backend.onrender.com/auth/login",
+        {
+          username,
+          password,
+        }
+      );
       // console.log(response.data.message);
       if (response.data.message) alert(response.data.message);
       if (response.data.token) {
@@ -80,10 +83,13 @@ const Register = () => {
     // using axios to make a post request to auth/register api
     // first argument is url, then object for the body of the request
     try {
-      const response = await axios.post("http://localhost:3001/auth/register", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://open-peaks-v2-backend.onrender.com/auth/register",
+        {
+          username,
+          password,
+        }
+      );
       alert(response.data.message);
       setUsername("");
       setPassword("");

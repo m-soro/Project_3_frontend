@@ -19,7 +19,9 @@ export default function Home({ userName }) {
   useEffect(() => {
     const fetchMountains = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/mountain");
+        const response = await axios.get(
+          "https://open-peaks-v2-backend.onrender.com/mountain"
+        );
         setMountains(response.data);
       } catch (error) {
         console.error(error);
@@ -41,10 +43,11 @@ export default function Home({ userName }) {
     fetchSavedMountains();
   }, [savedMountains]);
 
-  // IS THIS THE CORRECT WAY TO DO THIS????
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/mountain/delete/${id}`);
+      await axios.delete(
+        `https://open-peaks-v2-backend.onrender.com/mountain/delete/${id}`
+      );
     } catch (error) {
       console.log(error);
     }
