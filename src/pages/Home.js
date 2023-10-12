@@ -31,7 +31,7 @@ export default function Home({ userName }) {
     const fetchSavedMountains = async () => {
       try {
         const response = await axios.get(
-          `https://open-peaks-v2-backend.onrender.com/savedMountains/ids/${userID}`
+          `https://open-peaks-v2-backend.onrender.com/mountain/savedMountains/ids/${userID}`
         );
         setSavedMountains(response.data.savedMountains);
       } catch (error) {
