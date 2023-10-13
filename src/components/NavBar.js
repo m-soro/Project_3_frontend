@@ -35,7 +35,9 @@ export default function NavBar({ userID, userName }) {
         ) : (
           <ul>
             <li>
-              <Link to="/">{userName}'s Account</Link>
+              <Link to="/">
+                {userName !== null ? `${userName}'s Account` : `Account`}
+              </Link>
             </li>
             <li>
               <Link to="/create-data">Create Lists</Link>

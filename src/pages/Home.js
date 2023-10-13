@@ -133,8 +133,12 @@ export default function Home({ userName }) {
         <>
           <h2>
             {mountains?.length === 0
-              ? `Hi ${userName}, your list is empty.`
-              : `Hi ${userName}, your created lists:`}
+              ? `Hi ${
+                  userName !== null ? `${userName}` : ``
+                }, your list is empty.`
+              : `Hi ${
+                  userName !== null ? `${userName}` : ``
+                }, your created lists:`}
           </h2>
           {mountains !== undefined || mountains?.length === 0
             ? withResults()

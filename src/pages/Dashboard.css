@@ -103,6 +103,11 @@ h5 {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+.cards-container li {
+  padding: 1em 0;
+  margin: 0.5em 0;
+}
+
 .percentage,
 .mountain-card-article-body-open-closed-sched,
 .chair-and-map,

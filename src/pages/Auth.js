@@ -67,6 +67,7 @@ const Login = () => {
       password={password}
       setPassword={setPassword}
       label="Log In"
+      placeholder="User name"
       onSubmit={onSubmit}
       message="See latest updates of your favorite snow sports destinations"
     />
@@ -104,6 +105,7 @@ const Register = () => {
       setUsername={setUsername}
       password={password}
       setPassword={setPassword}
+      placeholder="User name"
       label="Sign up"
       message="Create an account to keep track of your favorite snow sports destinations"
     />
@@ -122,6 +124,7 @@ const Form = ({
   label,
   message,
   onSubmit,
+  placeholder,
 }) => {
   const [randomImage, setRandomImage] = useState("");
 
@@ -155,7 +158,7 @@ const Form = ({
             <input
               type="text"
               name="login"
-              placeholder="Login"
+              placeholder={placeholder}
               aria-label="Login"
               value={username.charAt(0).toUpperCase() + username.slice(1)}
               onChange={(e) => setUsername(e.target.value)}

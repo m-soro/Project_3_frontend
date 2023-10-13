@@ -57,7 +57,7 @@ export default function Dashboard() {
               const { stats: openClosedSched } = lifts; // how many chairs are open/closed/onhold
               const { percentage } = openClosedSched; // ratio of chairs open/closed/scheduled
               return Object.keys(percentage).map((key, index) => (
-                <li>
+                <li key={index}>
                   {key}: {percentage[key]}
                 </li>
               ));
@@ -75,7 +75,7 @@ export default function Dashboard() {
               return Object.keys(openClosedSched).map((key, index) => {
                 if (key !== "percentage") {
                   return (
-                    <li>
+                    <li key={index}>
                       {key}: {openClosedSched[key]}
                     </li>
                   );
@@ -135,9 +135,9 @@ export default function Dashboard() {
           }
         };
 
-        const showLocation = () => {
-          const map =
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10245.793161796904!2d-122.96724402382902!3d50.05916564431904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5487225af28c5409%3A0x276c0edfa7be2148!2sWhistler%20Mountain!5e0!3m2!1sen!2sus!4v1697039798245!5m2!1sen!2sus";
+        const showLocation = (map) => {
+          // const map =
+          //   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10245.793161796904!2d-122.96724402382902!3d50.05916564431904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5487225af28c5409%3A0x276c0edfa7be2148!2sWhistler%20Mountain!5e0!3m2!1sen!2sus!4v1697039798245!5m2!1sen!2sus";
           return (
             <details>
               <summary>Map</summary>
@@ -197,8 +197,7 @@ export default function Dashboard() {
 
                   <div className="chair-and-map">
                     {showChairStatus()}
-
-                    {showLocation()}
+                    {showLocation(list.map)}
                     {showURL()}
                   </div>
                 </body>
@@ -221,7 +220,7 @@ export default function Dashboard() {
       </div>
       <div className="cards-container">
         {moreDetailedList?.map((list, index) => {
-          return <div key={index}>{makeCards(list, index)}</div>;
+          return <li key={index}>{makeCards(list, index)}</li>;
         })}
       </div>
     </div>
